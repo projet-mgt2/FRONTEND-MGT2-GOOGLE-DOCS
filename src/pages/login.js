@@ -1,8 +1,14 @@
 import { useRouter } from 'next/router';
+import { useForm } from "react-hook-form";
 import React from 'react';
 
 export default function Login() {
+  const { register, handleSubmit } = useForm({});
   const router = useRouter();
+  
+  const onSubmit = (data) => {
+    console.log(data);
+  }
 
   const handleSignupClick = () => {
     router.push('/signup');
@@ -11,9 +17,9 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 shadow-md rounded-md w-96">
-        <h2 className="text-2xl font-semibold mb-6">Login from google docs</h2>
+        <h2 className="text-2xl text-black font-semibold mb-6">Login from google docs</h2>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label htmlFor="username" className="block text-sm font-medium text-gray-600">
               Username
@@ -23,6 +29,7 @@ export default function Login() {
               id="username"
               name="username"
               className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+              {...register("username", {required: true})}
             />
           </div>
           <div className="mb-4">
@@ -34,6 +41,7 @@ export default function Login() {
               id="password"
               name="password"
               className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+              {...register("password", {required: true})}
             />
           </div>
           <button

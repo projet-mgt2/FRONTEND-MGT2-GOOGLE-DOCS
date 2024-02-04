@@ -1,25 +1,26 @@
-
 import { useRouter } from 'next/router';
 import { useState } from "react"
+import { useForm } from "react-hook-form";
 import React from 'react';
-export default function Signup(){
-  const [name , setName] = useState('');
-   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignup = () => {
-    console.log('Nom:' , name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+export default function Signup(){
+  const { register, handleSubmit } = useForm({});
+  const router = useRouter();
+  
+  const onSubmit = (data) => {
+    console.log(data);
+  }
+
+  const handleLoginClick = () => {
+    router.push('/login');
   };
+
     return (
         <div className="min-h-screen flex items-center justify-center">
           <div className="bg-white p-8 shadow-md rounded-md w-96">
-            <h2 className="text-2xl font-semibold mb-6">Signup</h2>
+            <h2 className="text-2xl text-black font-semibold mb-6">Signup</h2>
     
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-600">
                   Name
@@ -28,8 +29,7 @@ export default function Signup(){
                   type="name"
                   id="name"
                   name="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  {...register("name", {required: true})}
                   className="mt-1 p-2 border border-gray-300 w-full rounded-md"
                 />
               </div>
@@ -41,8 +41,7 @@ export default function Signup(){
                   type="email"
                   id="email"
                   name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  {...register("email", {required: true})}
                   className="mt-1 p-2 border border-gray-300 w-full rounded-md"
                 />
               </div>
@@ -54,8 +53,7 @@ export default function Signup(){
                   type="password"
                   id="password"
                   name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  {...register("password", {required: true})}
                   className="mt-1 p-2 border border-gray-300 w-full rounded-md"
                 />
               </div>
@@ -67,19 +65,25 @@ export default function Signup(){
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  {...register("confirmPassword", {required: true})}
                   className="mt-1 p-2 border border-gray-300 w-full rounded-md"
                 />
               </div>
               <button
-                type="button"
-                onClick={handleSignup}
+                type="submit"
                 className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
               >
                 Signup
               </button>
             </form>
+            <hr className=' p-2'/>
+            <button
+              type="button"
+              onClick={handleLoginClick}
+              className="w-full mt-4 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+            >
+              Login
+            </button>
           </div>
         </div>
       );
