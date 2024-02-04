@@ -1,17 +1,29 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
-import React from 'react';
+import { login } from './api/user';
 
 export default function Login() {
   const { register, handleSubmit } = useForm({});
   const router = useRouter();
   
   const onSubmit = (data) => {
-    console.log(data);
+    onSubmitAsync(data);
   }
 
   const handleSignupClick = () => {
     router.push('/signup');
+  };
+  
+  const onSubmitAsync = async (data) => {
+    try {
+      const response = await login(data);
+
+      console.log(response);
+      // router.push('/dashboard');
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
+    }
   };
 
   return (
