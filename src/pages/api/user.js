@@ -21,6 +21,24 @@ export async function login(userData) {
   }
 };
 
+export async function signup(userData) {
+  try {
+    const credentials = `${USERNAME}:${PASSWORD}`;
+    const encodedCredentials = btoa(credentials);
+
+    const { data } = await axios.post(`${BASE_URL}/User`, userData, {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+          },
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
     login,
+    signup,
 };

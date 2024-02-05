@@ -1,17 +1,19 @@
-import { useRouter } from 'next/router';
-import { useState } from "react"
-import { useForm } from "react-hook-form";
 import React from 'react';
+import { useRouter } from 'next/router';
+import { useForm } from "react-hook-form";
+import apiUser from './api/user';
 
 export default function Signup(){
   const { register, handleSubmit } = useForm({});
   const router = useRouter();
-  
-  const onSubmit = (data) => {
-    console.log(data);
-  }
 
   const handleLoginClick = () => {
+    router.push('/login');
+  };
+  
+  const onSubmit = async (data) => {
+    console.log(data);
+    apiUser.signup(data);
     router.push('/login');
   };
 
@@ -21,15 +23,27 @@ export default function Signup(){
             <h2 className="text-2xl text-black font-semibold mb-6">Signup</h2>
     
             <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-600">
-                  Name
+              <div className="mb-4">
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-600">
+                  First name
                 </label>
                 <input
-                  type="name"
-                  id="name"
-                  name="name"
-                  {...register("name", {required: true})}
+                  type='text'
+                  id="firstName"
+                  name="firstName"
+                  {...register("first_name", {required: true})}
+                  className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="lastName" className="block text-sm font-medium text-gray-600">
+                  Last name
+                </label>
+                <input
+                type='text'
+                  id="lastName"
+                  name="lastName"
+                  {...register("last_name", {required: true})}
                   className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
                 />
               </div>
