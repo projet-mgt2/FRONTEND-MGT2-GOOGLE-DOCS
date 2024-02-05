@@ -4,21 +4,23 @@ const BASE_URL = 'http://localhost:8080';
 const USERNAME = 'user';
 const PASSWORD = 'user';
 
-const login = async (userData) => {
+export async function login(userData) {
   try {
     const credentials = `${USERNAME}:${PASSWORD}`;
     const encodedCredentials = btoa(credentials);
 
-    const response = (await axios.post(`${BASE_URL}/User`, userData),  {
+    const { data } = await axios.post(`${BASE_URL}/Login`, userData, {
         headers: {
-          Authorization: `Basic ${encodedCredentials}`,
-        }
+            Authorization: `Basic ${encodedCredentials}`,
+          },
     });
-    console.log(response.data);
-    return response.data;
+    console.log(data);
+    return data;
   } catch (error) {
     throw error;
   }
 };
 
-export { login };
+export default {
+    login,
+};
