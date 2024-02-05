@@ -30,7 +30,7 @@ export default function Login() {
               type="text"
               id="username"
               name="username"
-              className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+              className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
               {...register("username", {required: true})}
             />
           </div>
@@ -42,7 +42,7 @@ export default function Login() {
               type="password"
               id="password"
               name="password"
-              className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+              className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
               {...register("password", {required: true})}
             />
           </div>

@@ -30,7 +30,7 @@ export default function Signup(){
                   id="name"
                   name="name"
                   {...register("name", {required: true})}
-                  className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+                  className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
                 />
               </div>
               <div className="mb-4">
@@ -42,7 +42,7 @@ export default function Signup(){
                   id="email"
                   name="email"
                   {...register("email", {required: true})}
-                  className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+                  className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
                 />
               </div>
               <div className="mb-4">
@@ -54,7 +54,7 @@ export default function Signup(){
                   id="password"
                   name="password"
                   {...register("password", {required: true})}
-                  className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+                  className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
                 />
               </div>
               <div className="mb-4">
@@ -66,7 +66,7 @@ export default function Signup(){
                   id="confirmPassword"
                   name="confirmPassword"
                   {...register("confirmPassword", {required: true})}
-                  className="mt-1 p-2 border border-gray-300 w-full rounded-md"
+                  className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
                 />
               </div>
               <button
