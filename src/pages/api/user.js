@@ -9,7 +9,7 @@ export async function login(userData) {
     const credentials = `${USERNAME}:${PASSWORD}`;
     const encodedCredentials = btoa(credentials);
 
-    const { data } = await axios.post(`${BASE_URL}/Login`, userData, {
+    const { data } = await axios.post(`${BASE_URL}/Login/valid`, userData, {
         headers: {
             Authorization: `Basic ${encodedCredentials}`,
           },
