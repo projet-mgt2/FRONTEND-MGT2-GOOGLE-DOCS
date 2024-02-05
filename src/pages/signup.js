@@ -12,9 +12,11 @@ export default function Signup(){
   };
   
   const onSubmit = async (data) => {
-    console.log(data);
-    apiUser.signup(data);
-    router.push('/login');
+    apiUser.signup(data).then((res) => {
+      if (res == "User created with success") {
+        router.push('/login');
+      }
+    });
   };
 
     return (
