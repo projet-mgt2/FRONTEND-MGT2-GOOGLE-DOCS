@@ -14,7 +14,7 @@ export default function Login() {
   const onSubmit = async (data) => {
     apiUser.login(data).then((res) => {
       if (res == "Authentification with succes") {
-        // router.push('/dashboard');
+        router.push('/accueil');
       }
     });
   };
