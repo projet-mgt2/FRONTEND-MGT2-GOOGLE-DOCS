@@ -1,11 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars , faShare} from '@fortawesome/free-solid-svg-icons';
 import TextEditor from "../../components/docs/texteditor";
 import { useRouter } from 'next/router';
 
 export default function Doc() {
-  const router = useRouter();
+  const [fichierOptionsVisible, setFichierOptionsVisible] = useState(false);
+
+  const toggleFichierOptions = () => {
+    setFichierOptionsVisible(!fichierOptionsVisible);
+  };
+    const router = useRouter();
 
   const goBack = () => {
     router.push("/home");
@@ -22,26 +28,36 @@ export default function Doc() {
             <h2 className="ml-4 text-2xl font-semibold text-gray-600">Document sans titre</h2>
               <div className='flex items-center text-sm space-x-3  h-8 text-gray-600 ml-3'>
                 <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Fichier</p>
+                transition  duration-200 case-out p-2 rounded-lg ' onClick={toggleFichierOptions}>Fichier</p>
                 <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Edition</p>
+                transition  duration-200 case-out p-2 rounded-lg'>Edition</p>
                 <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Affichage</p>
+                transition  duration-200 case-out p-2 rounded-lg'>Affichage</p>
                 <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Insertion</p>
+                transition  duration-200 case-out p-2 rounded-lg'>Insertion</p>
                 <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Format</p>
+                transition  duration-200 case-out p-2 rounded-lg'>Format</p>
                 <p className='option cursor-pointer hover:bg-gray-100
                   transition  duration-200 case-out p-2 rounded-lg'>Outils</p>
-                <p className='option cursor-pointer hover:bg-gray-100
+                  <p className='option cursor-pointer hover:bg-gray-100
                   transition  duration-200 case-out p-2 rounded-lg'>Extensions</p>
-                <p className='option cursor-pointer hover:bg-gray-100
+                  <p className='option cursor-pointer hover:bg-gray-100
                   transition  duration-200 case-out p-2 rounded-lg'>Aide</p>
-                <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg' onClick={() => goBack()}>Home page</p>
-
+            
             
               </div>
+              {fichierOptionsVisible && (
+            <div className='flex items-center text-sm space-x-3 h-8 text-gray-600 ml-3'>
+              <button className='option cursor-pointer hover:bg-gray-100
+                transition  duration-200 case-out p-2 rounded-lg'>
+                Nouveau
+              </button>
+              <button className='option cursor-pointer hover:bg-gray-100
+                transition  duration-200 case-out p-2 rounded-lg'>
+                Télécharger
+              </button>
+            </div>
+             )}
             </div> 
             <button className="bg-blue-500 hidden md:inline-flex h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             <FontAwesomeIcon icon={faShare} className="mr-2" />
@@ -58,3 +74,6 @@ export default function Doc() {
         
     );
 }
+
+
+
