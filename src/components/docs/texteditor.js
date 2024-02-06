@@ -17,7 +17,7 @@ export default function TextEditor() {
             <DynamicEditor
                 
                 toolbarClassName='flex sticky top-0 z-50 !justify-center mx-auto'
-                editorClassName='mt-6 bg-white shadow-lg max-w-5xl mx-auto'
+                editorClassName='mt-6 bg-white shadow-lg min-h-[120vh] max-h-[120vh] max-w-5xl mx-auto'
             />
         </div>
     );
