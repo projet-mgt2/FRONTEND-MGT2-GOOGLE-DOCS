@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import apiUser from './api/user';
@@ -6,6 +6,7 @@ import apiUser from './api/user';
 export default function Login() {
   const { register, handleSubmit } = useForm({});
   const router = useRouter();
+  const [bg, setBg] = useState("bg-white p-8 rounded-md w-96 drop-shadow-2xl");
 
   const handleSignupClick = () => {
     router.push('/signup');
@@ -14,14 +15,22 @@ export default function Login() {
   const onSubmit = async (data) => {
     apiUser.login(data).then((res) => {
       if (res == "Authentification with succes") {
-        router.push('/accueil');
+        setBg("bg-white p-8 rounded-md w-96 drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
+        setTimeout(() => {
+          router.push('/accueil');
+        }, 1000);
+      } else {
+        setBg("bg-white p-8 rounded-md w-96 drop-shadow-[0_25px_25px_rgba(255,0,0,0.5)]");
+        setTimeout(() => {
+          setBg("bg-white p-8 rounded-md w-96 drop-shadow-2xl");
+        }, 1000);
       }
     });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="bg-white p-8 drop-shadow-2xl rounded-md w-96">
+      <div className={bg}>
         <h2 className="text-2xl text-black font-semibold mb-6">Login from google docs</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
