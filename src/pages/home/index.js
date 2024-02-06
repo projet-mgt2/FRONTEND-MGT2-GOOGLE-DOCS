@@ -58,10 +58,10 @@ const Accueil = () => {
       </button>
 
       <button
-        className="h-12 w-22 md:h-17 md:w-17 border-solid border-2 rounded-md border-black text-black ml-4 md:ml-5"
+        className="h-12 w-22 md:h-17 md:w-17 ml-4 md:ml-5 rounded-md p-3 bg-blue-500 hover:bg-blue-700 border-none"
         onClick={handleLogout}
       >
-        Se deconnecter
+        Log out
       </button>
     </div>
   </header>
