@@ -20,8 +20,8 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 shadow-md rounded-md w-96">
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="bg-white p-8 drop-shadow-2xl rounded-md w-96">
         <h2 className="text-2xl text-black font-semibold mb-6">Login from google docs</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
