@@ -1,14 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars,
   faSearch,
   faEllipsisV,
-  faFileAlt,
   faFolder,
   faPlus,
+  faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { Image } from "next/image";
 import { useRouter } from "next/router";
 
 const Accueil = () => {
@@ -32,7 +30,7 @@ const Accueil = () => {
     <div className="flex items-center">
       <button className="h-20 w-20 border-0">
         <FontAwesomeIcon
-          icon={faBars}
+          icon={faFileAlt}
           size="2x"
           style={{ color: "blue" }}
         />

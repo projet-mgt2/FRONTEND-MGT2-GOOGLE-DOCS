@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars , faShare} from '@fortawesome/free-solid-svg-icons';
+import { faBars , faFolder, faShare} from '@fortawesome/free-solid-svg-icons';
 import TextEditor from "../../components/docs/texteditor";
 import { useRouter } from 'next/router';
 
@@ -20,8 +20,8 @@ export default function Doc() {
     return (
         <div>
             <header className='flex justify-between items-center p-3 pb-1 bg-white'>
-            <span className='cursor-pointer'>
-                <FontAwesomeIcon icon={faBars} size="2x" style={{ color: 'blue' }} />
+            <span className='cursor-pointer' onClick={() => goBack()}>
+                <FontAwesomeIcon icon={faFolder} size="2x" style={{ color: 'blue' }} />
             </span> 
             <div className='flex-grow px-2'>
               
