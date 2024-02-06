@@ -1,14 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars , faShare} from '@fortawesome/free-solid-svg-icons';
-import TextEditor from "./texteditor";
+import TextEditor from "../../components/docs/texteditor";
 import { useRouter } from 'next/router';
 
 export default function Doc() {
   const router = useRouter();
 
   const goBack = () => {
-    router.push("/accueil");
+    router.push("/home");
   }
 
     return (

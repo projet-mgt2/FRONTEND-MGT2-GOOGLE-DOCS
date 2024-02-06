@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
-import apiUser from './api/user';
+import apiUser from '../../api/user';
 
 export default function Signup(){
   const { register, handleSubmit } = useForm({});

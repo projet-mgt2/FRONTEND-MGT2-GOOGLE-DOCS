@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
-import apiUser from './api/user';
+import apiUser from '../../api/user';
 
 export default function Login() {
   const { register, handleSubmit } = useForm({});
@@ -17,7 +17,7 @@ export default function Login() {
       if (res == "Authentification with succes") {
         setBg("bg-white p-8 rounded-md w-96 drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
         setTimeout(() => {
-          router.push('/accueil');
+          router.push('/home');
         }, 1000);
       } else {
         setBg("bg-white p-8 rounded-md w-96 drop-shadow-[0_25px_25px_rgba(255,0,0,0.5)]");
