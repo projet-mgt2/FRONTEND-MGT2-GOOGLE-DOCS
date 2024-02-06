@@ -1,10 +1,16 @@
+
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import apiUser from '../../api/user';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export default function Login() {
   const { register, handleSubmit } = useForm({});
+  const [showPassword, setShowPassword] = useState(false);
+
   const router = useRouter();
   const [bg, setBg] = useState("bg-white p-8 rounded-md w-96 drop-shadow-2xl");
 
@@ -46,18 +52,27 @@ export default function Login() {
               {...register("username", {required: true})}
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 flex flex-col">
             <label htmlFor="password" className="block text-sm font-medium text-gray-600">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
-              {...register("password", {required: true})}
-            />
+            <div className="relative flex items-center">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                className="mt-1 p-2 border border-gray-300 w-full rounded-md text-black"
+                {...register("password", { required: true })}
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEyeSlash : faEye}
+                className="absolute top-2 right-3 cursor-pointer text-gray-500 mt-2"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            </div>
           </div>
+
+ 
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
@@ -66,7 +81,7 @@ export default function Login() {
           </button>
         </form>
 
-        {/* Ajoutez le paragraphe avec le lien Forgot Password */}
+       
         <p className="mt-2 text-sm text-gray-600">
           <a href="/forgot-password">Forgot Password?</a>
         </p>
@@ -82,4 +97,3 @@ export default function Login() {
     </div>
   );
 }
-
