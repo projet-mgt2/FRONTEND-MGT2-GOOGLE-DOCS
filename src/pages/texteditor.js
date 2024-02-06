@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import dynamic from 'next/dynamic';
 
-
-
 const DynamicEditor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
     {

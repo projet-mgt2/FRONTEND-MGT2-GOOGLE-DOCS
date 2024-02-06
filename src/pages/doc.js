@@ -1,7 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars , faShare} from '@fortawesome/free-solid-svg-icons';
-import Texteditor from "@/components/accueil/texteditor";
+import TextEditor from "./texteditor";
+import { useRouter } from 'next/router';
+
 export default function Doc() {
     return (
         <div>
@@ -43,7 +45,7 @@ export default function Doc() {
             </div>
           </button>
            </header>
-           <Texteditor/> 
+           <TextEditor/> 
         </div>
         
     );
