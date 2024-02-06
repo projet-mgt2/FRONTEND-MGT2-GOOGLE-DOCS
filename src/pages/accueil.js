@@ -9,14 +9,17 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "next/image";
+import { useRouter } from "next/router";
 
 const Accueil = () => {
+  const router = useRouter();
+
   const handleSwitchApp = (appName) => {
     console.log(`Switch to ${appName}`);
   };
 
   const handleLogout = () => {
-    console.log("Logout or switch account");
+    router.push("/login");
   };
 
   return (
