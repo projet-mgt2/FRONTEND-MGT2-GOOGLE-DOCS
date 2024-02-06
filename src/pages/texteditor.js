@@ -13,7 +13,7 @@ export default function TextEditor() {
    
     return (
         
-        <div className='bg-[#F8F9FA] min-h-screen pb-16'>
+        <div className='bg-[#F8F9FA] min-h-screen pb-16 text-black'>
             <DynamicEditor
                 
                 toolbarClassName='flex sticky top-0 z-50 !justify-center mx-auto'

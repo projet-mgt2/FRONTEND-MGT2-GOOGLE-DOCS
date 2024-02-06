@@ -23,7 +23,7 @@ const Accueil = () => {
   };
 
   const NewDoc = () => {
-    // router.push("/doc");
+    router.push("/doc");
   }
 
   return (
@@ -71,7 +71,7 @@ const Accueil = () => {
   <section>
     <div className="max-w-4xl mx-auto">
       <div className="flex justify-center gap-20 mt-10">
-        <div className=" mb-4" onClick={NewDoc()}>
+        <div className=" mb-4" onClick={() => NewDoc()}>
           <div className="relative h-60 w-48 border-2 cursor-pointer hover:border-gray-700 flex items-center justify-center">
             <button>
               <FontAwesomeIcon icon={faPlus} size="3x" color="gray" />
