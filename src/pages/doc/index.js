@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars , faFolder, faShare} from '@fortawesome/free-solid-svg-icons';
 import TextEditor from "../../components/docs/texteditor";
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 export default function Doc() {
   const [fichierOptionsVisible, setFichierOptionsVisible] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!Cookies.get('token')) {
+      alert('Need to authenticate');
+      router.push("/login");
+    }
+  });
 
   const toggleFichierOptions = () => {
     setFichierOptionsVisible(!fichierOptionsVisible);
-  };
-    const router = useRouter();
+  };  
 
   const goBack = () => {
     router.push("/home");

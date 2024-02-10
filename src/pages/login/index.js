@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
-import apiUser from '../../api/user';
+import apiUser from '../../api/users/user';
 import { faEye, faEyeSlash , faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import token from '../../utils/Token';
 
 
 export default function Login() {
@@ -20,7 +21,7 @@ export default function Login() {
   
   const onSubmit = async (data) => {
     apiUser.login(data).then((res) => {
-      if (res == "Authentification with succes") {
+      if (token.isJWT(res)) {
         setBg("bg-white   w-120 drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
         setTimeout(() => {
           router.push('/home');
@@ -30,7 +31,7 @@ export default function Login() {
         setTimeout(() => {
           setBg("bg-white  rounded-md w-120 drop-shadow-2xl");
           alert("Username or password not valid")
-        }, 100);
+        }, 500);
       }
     });
   };

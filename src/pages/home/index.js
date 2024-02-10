@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -8,15 +8,29 @@ import {
   faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
+import apiDocs from '../../api/documents/document';
+import token from '../../utils/Token';
+import Cookies from "js-cookie";
 
 const Accueil = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    apiDocs.getAllDocs()
+      .then((res) => {
+          if (!Cookies.get('token')) {
+            alert('Need to authenticate');
+            router.push("/login");
+          }
+        });
+  });
 
   const handleSwitchApp = (appName) => {
     console.log(`Switch to ${appName}`);
   };
 
   const handleLogout = () => {
+    Cookies.remove('token');
     router.push("/login");
   };
 
