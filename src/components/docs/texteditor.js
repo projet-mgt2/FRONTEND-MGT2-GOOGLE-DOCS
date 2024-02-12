@@ -11,7 +11,7 @@ const Editor = dynamic(
 
 export default function TextEditor() {
    
-     return (
+  return (
     <div className="bg-[#F1F3F4] dark:bg-dark-extra min-h-screen pb-16 print:pb-0 ">
       <Editor
         toolbarClassName="flex sticky top-0 z-50 sm:!justify-center print:!hidden dark:!bg-dark-mid !border-0"
