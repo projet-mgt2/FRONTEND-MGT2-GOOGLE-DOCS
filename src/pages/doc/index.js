@@ -5,6 +5,7 @@ import { faBars , faFolder, faShare} from '@fortawesome/free-solid-svg-icons';
 import TextEditor from "../../components/docs/texteditor";
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import Image from 'next/image';
 
 export default function Doc() {
   const [fichierOptionsVisible, setFichierOptionsVisible] = useState(false);
@@ -73,7 +74,7 @@ export default function Doc() {
             </button>
             <button className='ml-5 md:ml-5 h-20 w-20 border-0'>
             <div className='rounded-full overflow-hidden w-10 h-10 bg-gray-500'>
-              <img src='' className='w-full h-full object-cover' />
+              <Image src='' className='w-full h-full object-cover' alt='image' />
             </div>
           </button>
            </header>

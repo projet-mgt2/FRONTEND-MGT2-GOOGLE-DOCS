@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
@@ -97,7 +96,7 @@ export default function Login() {
 
           
             <p className="mt-2 text-sm text-gray-600">
-              <a href="/forgot-password">Don't have an account?</a>
+              <a href="/forgot-password">Don&apos;t have an account?</a>
             </p>
 
             <button

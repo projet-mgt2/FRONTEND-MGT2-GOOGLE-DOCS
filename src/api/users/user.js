@@ -12,8 +12,10 @@ async function signup({first_name, last_name, email, password}) {
   return Login('/User/signup', {first_name, last_name, email, password});
 }
 
-export default {
+const apiUser = {
   login,
   signup,
   getAllUsers,
 }
+
+export default apiUser;
