@@ -2,6 +2,8 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import apiUser from "../../api/users/user";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
   const { register, handleSubmit } = useForm({});
@@ -11,10 +13,40 @@ export default function Signup() {
     router.push("/login");
   };
 
+  const handleSuccess = () => {
+    toast.success('Signup succesfuly!', {
+      position: 'top-center',
+      autoClose: 3000, // Durée en millisecondes (ajustez selon vos besoins)
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+  const handleError = () => {
+    toast.error('Signup failed!', {
+      position: 'top-center',
+      autoClose: 3000, // Durée en millisecondes (ajustez selon vos besoins)
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
   const onSubmit = async (data) => {
     apiUser.signup(data).then((res) => {
       if (res == "User created with success") {
-        router.push("/login");
+        setTimeout(() => {
+          handleSuccess();
+        }, 900);
+        setTimeout(() => {
+          router.push("/login");
+        }, 1400);
+      }else{
+        setTimeout(() => {
+          handleError
+        }, 1000);
       }
     });
   };
@@ -89,7 +121,8 @@ export default function Signup() {
               type="password"
               id="password"
               name="password"
-              {...register("password", { required: true })}
+              {...register("password",
+              { required: true, minLength:{value:8, message:" please enter a password longer than 8 characters "} })}
               className="mt-1 p-2 border border-gray-300 w-full text-black"
             />
           </div>
@@ -104,7 +137,8 @@ export default function Signup() {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              {...register("confirmPassword", { required: true })}
+              {...register("confirmPassword", 
+              { required: true, minLength:{value:8, message:" please enter a password longer than 8 characters "} })}
               className="mt-1 p-2 border border-gray-300 w-full text-black"
             />
           </div>

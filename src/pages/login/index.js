@@ -55,12 +55,12 @@ export default function Login() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
                 <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-                  Username
+                  Email
                 </label>
                 <input
-                  type="text"
-                  id="username"
-                  name="username"
+                  type="email"
+                  id="email"
+                  name="email"
                   className="mt-1 p-2 border border-gray-300 w-full  text-black"
                   {...register("username", {required: true})}
                 />
