@@ -1,115 +1,122 @@
+
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import apiUser from '../../api/users/user';
-import { faEye, faEyeSlash , faFileAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import token from '../../utils/Token';
-
+import {
+  FaFacebookF,
+  FaGoogle,
+  FaLinkedinIn,
+  FaRegEnvelope,
+} from 'react-icons/fa';
+import { MdLockOutline } from 'react-icons/md';
 
 export default function Login() {
-  const { register, handleSubmit } = useForm({});
-  const [showPassword, setShowPassword] = useState(false);
-
+  const { register, handleSubmit, formState: { errors } } = useForm({});
   const router = useRouter();
-  const [bg, setBg] = useState(" p-8 w-120");
+  const [bg, setBg] = useState("flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignupClick = () => {
     router.push('/signup');
   };
-  
+
   const onSubmit = async (data) => {
-    apiUser.login(data).then((res) => {
+    try {
+      const res = await apiUser.login(data);
       if (token.isJWT(res)) {
-        setBg("bg-white   w-120 drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
+       // setBg("bg-white   w-120 drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
         setTimeout(() => {
           router.push('/home');
         }, 1000);
       } else {
-        setBg("bg-white rounded-md w-120 drop-shadow-[0_25px_25px_rgba(255,0,0,0.5)]");
+        setErrorMessage("Username or password not valid");
+       // setBg("bg-white rounded-md w-120 drop-shadow-[0_25px_25px_rgba(255,0,0,0.5)]");
         setTimeout(() => {
-          setBg("bg-white  rounded-md w-120 drop-shadow-2xl");
-          alert("Username or password not valid")
+        //  setBg("bg-white  rounded-md w-120 drop-shadow-2xl");
+          setErrorMessage("");
         }, 500);
       }
-    });
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorMessage("An error occurred. Please try again later.");
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center  justify-center bg-blue-100">
-      <div className={bg}>
-        <div className='flex w-160 bg-white rounded-md' >
-        <div className="flex flex-col drop-shadow-2xl items-center w-96 mt-12 p-8 rounded-l-md">
-          <FontAwesomeIcon
-          icon={faFileAlt}
-          size="6x"
-          style={{ color: "blue" }}
-         />
-          <h2 className="text-xl text-black font-semibold  mt-10">Google Docs</h2>
-
-        </div>
-        <div className='p-8 w-96'>
-      
-            <h2 className="text-2xl text-black font-semibold mb-6 text-center bg-red">Login</h2>
-          
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 p-2 border border-gray-300 w-full  text-black"
-                  {...register("username", {required: true})}
-                />
+    <div className={bg}>
+      <main className='flex flex-col items-center justify-center w-full flex-1 px-20 text-center'>
+        <div className='bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
+          <div className="w-3/5 p-5">
+            <div className="py-10">
+              <h2 className="text-3xl font-bold text-blue-500 mb-2">Sign in to Account</h2>
+              <div className="border-2 w-10 border-blue-500 inline-block mb-2"></div>
+              <div className="flex justify-center my-2">
+                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1">
+                  <FaFacebookF className="text-sm" />
+                </a>
+                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1">
+                  <FaLinkedinIn className="text-sm" />
+                </a>
+                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1">
+                  <FaGoogle className="text-sm" />
+                </a>
               </div>
-              <div className="mb-4 flex flex-col">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-                  Password
-                </label>
-                <div className="relative flex items-center">
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
-                    name="password"
-                    className="mt-1 p-2 border border-gray-300 w-full  text-black"
-                    {...register("password", { required: true })}
-                  />
-                  <FontAwesomeIcon
-                    icon={showPassword ? faEyeSlash : faEye}
-                    className="absolute top-2 right-3 cursor-pointer text-gray-500 mt-2"
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
+              <p className='text-gray-400 my-3'>Or use your email account</p>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {errorMessage && <p className="text-red-500 my-3">{errorMessage}</p>}
+                <div className='flex flex-col items-center'>
+                  <div className={`bg-gray-100 w-64 p-2 flex items-center mb-3 ${errors.username ? 'border-red-500' : ''}`}>
+                    <FaRegEnvelope className="text-gray-400 m-2" />
+                    <input
+                      type='text'
+                      id='email'
+                      name='email'
+                      placeholder='Username'
+                      className='bg-gray-100 outline-none text-sm flex-1'
+                      {...register("username", { required: true })}
+                    />
+                  </div>
+                  <div className={`bg-gray-100 w-64 p-2 flex items-center mb-3 ${errors.password ? 'border-red-500' : ''}`}>
+                    <MdLockOutline className="text-gray-400 m-2" />
+                    <input
+                      type='password'
+                      id='password'
+                      name='password'
+                      placeholder='Password'
+                      className='bg-gray-100 outline-none text-sm flex-1'
+                      {...register("password", { required: true })}
+                    />
+                  </div>
+                  <div className='flex justify-between w-64 mb-5'>
+                    <label className='flex- items-center text-xl'></label>
+                    <a href='/forgot-password' className='text-x5'>Don&apos;t have an account?</a>
+                  </div>
+                  <button
+                    type="submit"
+                    className="border-blue-500 text-blue-500 border-2 rounded-full px-12 py-2 inline-block font-semibold hover:bg-blue-500 hover:text-white"
+                  >
+                    Sign In
+                  </button>
                 </div>
-              </div>
-
-    
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white py-2  hover:bg-blue-600"
-              >
-                Login
-              </button>
-            </form>
-
-          
-            <p className="mt-2 text-sm text-gray-600">
-              <a href="/forgot-password">Don&apos;t have an account?</a>
-            </p>
-
+              </form>
+            </div>
+          </div>
+          <div className="w-2/5 bg-blue-500 text-white rounded-tr-2xl rounded-bl-2xl py-36 px-12">
+            <h2 className="text-3xl font-bold mb-2">Hello, Friend</h2>
+            <div className="border-2 w-10 border-white inline-block mb-2"></div>
+            <p className="mb-10">Welcome to Google Docs</p>
             <button
-              type="button"
+              type='button'
               onClick={handleSignupClick}
-              className="w-full mt-4 bg-green-500 text-white py-2  hover:bg-green-600"
+              className="border-white border-2 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-blue-500"
             >
-              Signup
+              Sign Up
             </button>
-      </div>
+          </div>
         </div>
-       
-      </div>
+      </main>
     </div>
   );
 }
