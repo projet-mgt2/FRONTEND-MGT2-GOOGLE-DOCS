@@ -68,13 +68,13 @@ export default function Login() {
                 {errorMessage && <p className="text-red-500 my-3">{errorMessage}</p>}
                 <div className='flex flex-col items-center'>
                   <div className={`bg-gray-100 w-64 p-2 flex items-center mb-3 ${errors.username ? 'border-red-500' : ''}`}>
-                    <FaRegEnvelope className="text-gray-400 m-2" />
+                    <FaRegEnvelope className="text-gray-400 m-2 text-black" />
                     <input
                       type='text'
                       id='email'
                       name='email'
                       placeholder='Username'
-                      className='bg-gray-100 outline-none text-sm flex-1'
+                      className='bg-gray-100 outline-none text-sm flex-1 text-black'
                       {...register("username", { required: true })}
                     />
                   </div>
@@ -85,7 +85,7 @@ export default function Login() {
                       id='password'
                       name='password'
                       placeholder='Password'
-                      className='bg-gray-100 outline-none text-sm flex-1'
+                      className='bg-gray-100 outline-none text-sm flex-1 text-black'
                       {...register("password", { required: true })}
                     />
                   </div>

@@ -33,10 +33,22 @@ export default function Signup() {
       draggable: true,
     });
   };
+  const passError = () => {
+    toast.error('Signup faild password incompatible!', {
+      position: 'top-center',
+      autoClose: 3000, // Durée en millisecondes (ajustez selon vos besoins)
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
   const onSubmit = async (data) => {
     apiUser.signup(data).then((res) => {
-      if (res == "User created with success") {
+      if (data.password != data.confirmPassword) {
+        passError();
+      }else if (res == "User created with success") {
         setTimeout(() => {
           handleSuccess();
         }, 900);
