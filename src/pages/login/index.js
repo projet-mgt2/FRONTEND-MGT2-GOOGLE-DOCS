@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -26,15 +25,15 @@ export default function Login() {
     try {
       const res = await apiUser.login(data);
       if (token.isJWT(res)) {
-       // setBg("bg-white   w-120 drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
+     // setBg("bg-white    drop-shadow-[0_25px_25px_rgba(0,255,0,0.5)]");
         setTimeout(() => {
           router.push('/home');
         }, 1000);
       } else {
         setErrorMessage("Username or password not valid");
-       // setBg("bg-white rounded-md w-120 drop-shadow-[0_25px_25px_rgba(255,0,0,0.5)]");
+      //  setBg("bg-white rounded-md  drop-shadow-[0_25px_25px_rgba(255,0,0,0.5)]");
         setTimeout(() => {
-        //  setBg("bg-white  rounded-md w-120 drop-shadow-2xl");
+      // setBg("bg-white  rounded-md  drop-shadow-2xl");
           setErrorMessage("");
         }, 500);
       }
@@ -46,20 +45,21 @@ export default function Login() {
 
   return (
     <div className={bg}>
-      <main className='flex flex-col items-center justify-center w-full flex-1 px-20 text-center'>
-        <div className='bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
-          <div className="w-3/5 p-5">
+      <main className='flex flex-col items-center justify-center w-full flex-1 px-4 md:px-8 lg:px-16 xl:px-32 text-center'>
+        <div className='bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-4xl'>
+          <div className="md:w-3/5 p-5">
             <div className="py-10">
               <h2 className="text-3xl font-bold text-blue-500 mb-2">Sign in to Account</h2>
               <div className="border-2 w-10 border-blue-500 inline-block mb-2"></div>
               <div className="flex justify-center my-2">
-                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1">
-                  <FaFacebookF className="text-sm" />
-                </a>
-                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1">
+              <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1 transition duration-300 ease-in-out transform hover:scale-110">
+                    <FaFacebookF className="text-sm" />
+                  </a>
+
+                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1 transition duration-300 ease-in-out transform hover:scale-110">
                   <FaLinkedinIn className="text-sm" />
                 </a>
-                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1">
+                <a href="#" className="border-2 border-gray-500 rounded-full p-3 mx-1 transition duration-300 ease-in-out transform hover:scale-110">
                   <FaGoogle className="text-sm" />
                 </a>
               </div>
@@ -103,8 +103,8 @@ export default function Login() {
               </form>
             </div>
           </div>
-          <div className="w-2/5 bg-blue-500 text-white rounded-tr-2xl rounded-bl-2xl py-36 px-12">
-            <h2 className="text-3xl font-bold mb-2">Hello, Friend</h2>
+          <div className="md:w-2/5 bg-blue-500 text-white rounded-tr-2xl rounded-bl-2xl py-12 px-6 md:py-24 md:px-12">
+               <h2 className="text-3xl font-bold mb-2">Hello, Friend</h2>
             <div className="border-2 w-10 border-white inline-block mb-2"></div>
             <p className="mb-10">Welcome to Google Docs</p>
             <button
