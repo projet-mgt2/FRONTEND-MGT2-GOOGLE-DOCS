@@ -72,7 +72,7 @@ const Accueil = () => {
       </button>
 
       <button
-        className="h-12 w-22 md:h-17 md:w-17 ml-4 md:ml-5 rounded-md p-3 bg-blue-500 hover:bg-blue-700 border-none"
+        className="h-12 w-22 md:h-17 md:w-17 ml-4 md:ml-5   border-blue-500 text-blue-500 border-2 rounded-full px-12 py-2 inline-block font-semibold hover:bg-blue-500 hover:text-white"
         onClick={handleLogout}
       >
         Log out
