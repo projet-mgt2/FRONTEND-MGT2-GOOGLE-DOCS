@@ -44,3 +44,7 @@ body {
 #__next-build-watcher + div {
   display: none;
 }
+
+#container_editor_tableBorderSize-popup + div {
+  display: none;
+}

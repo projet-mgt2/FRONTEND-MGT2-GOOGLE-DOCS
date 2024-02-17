@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import apiDocs from '../../api/documents/document';
-import token from '../../utils/Token';
 import Cookies from "js-cookie";
 
 const Accueil = () => {

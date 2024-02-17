@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars , faFolder, faShare} from '@fortawesome/free-solid-svg-icons';
-import TextEditor from "../../components/docs/texteditor";
+import DocEditor from "../../components/docs/DocEditor";
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
-import Image from 'next/image';
 
 export default function Doc() {
   const [fichierOptionsVisible, setFichierOptionsVisible] = useState(false);
@@ -16,7 +15,7 @@ export default function Doc() {
       alert('Need to authenticate');
       router.push("/login");
     }
-  });
+  }, []);
 
   const toggleFichierOptions = () => {
     setFichierOptionsVisible(!fichierOptionsVisible);
@@ -26,36 +25,20 @@ export default function Doc() {
     router.push("/home");
   }
 
-    return (
-        <div>
-            <header className='flex justify-between items-center p-3 pb-1 bg-white'>
-            <span className='cursor-pointer' onClick={() => goBack()}>
-                <FontAwesomeIcon icon={faFolder} size="2x" style={{ color: 'blue' }} />
-            </span> 
-            <div className='flex-grow px-2'>
-              
-            <h2 className="ml-4 text-2xl font-semibold text-gray-600">Document sans titre</h2>
-              <div className='flex items-center text-sm space-x-3  h-8 text-gray-600 ml-3'>
-                <p className='option cursor-pointer hover:bg-gray-100
-                transition  duration-200 case-out p-2 rounded-lg ' onClick={toggleFichierOptions}>Fichier</p>
-                <p className='option cursor-pointer hover:bg-gray-100
-                transition  duration-200 case-out p-2 rounded-lg'>Edition</p>
-                <p className='option cursor-pointer hover:bg-gray-100
-                transition  duration-200 case-out p-2 rounded-lg'>Affichage</p>
-                <p className='option cursor-pointer hover:bg-gray-100
-                transition  duration-200 case-out p-2 rounded-lg'>Insertion</p>
-                <p className='option cursor-pointer hover:bg-gray-100
-                transition  duration-200 case-out p-2 rounded-lg'>Format</p>
-                <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Outils</p>
-                  <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Extensions</p>
-                  <p className='option cursor-pointer hover:bg-gray-100
-                  transition  duration-200 case-out p-2 rounded-lg'>Aide</p>
-            
-            
-              </div>
-              {fichierOptionsVisible && (
+  return (
+    <div>
+      <header className='flex justify-between items-center p-3 pb-1 bg-white'>
+        <span className='cursor-pointer' onClick={() => goBack()}>
+          <FontAwesomeIcon icon={faFolder} size="2x" style={{ color: 'blue' }} />
+        </span> 
+        <div className='flex-grow px-2'>
+          <h2 className="ml-4 text-2xl font-semibold text-gray-600">Document sans titre</h2>
+          <div className='flex items-center text-sm space-x-3  h-8 text-gray-600 ml-3'>
+            <p className='option cursor-pointer hover:bg-gray-100
+            transition  duration-200 case-out p-2 rounded-lg ' onClick={toggleFichierOptions}>Fichier</p>
+            {/* Autres options */}
+          </div>
+          {fichierOptionsVisible && (
             <div className='flex items-center text-sm space-x-3 h-8 text-gray-600 ml-3'>
               <button className='option cursor-pointer hover:bg-gray-100
                 transition  duration-200 case-out p-2 rounded-lg'>
@@ -66,23 +49,15 @@ export default function Doc() {
                 Télécharger
               </button>
             </div>
-             )}
-            </div> 
-            <button className="bg-blue-500 hidden md:inline-flex h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            <FontAwesomeIcon icon={faShare} className="mr-2" />
-            Partager
-            </button>
-            <button className='ml-5 md:ml-5 h-20 w-20 border-0'>
-            <div className='rounded-full overflow-hidden w-10 h-10 bg-gray-500'>
-              <Image src='' className='w-full h-full object-cover' alt='image' />
-            </div>
-          </button>
-           </header>
-           <TextEditor/> 
-        </div>
-        
-    );
+          )}
+        </div> 
+        <button className="bg-blue-500 hidden md:inline-flex h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <FontAwesomeIcon icon={faShare} className="mr-2" />
+          Partager
+        </button>
+        {/* Avatar */}
+      </header>
+      <DocEditor />
+    </div>
+  );
 }
-
-
-

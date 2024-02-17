@@ -33,11 +33,11 @@ export async function Post(endpoint, _data) {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-        };
+                body: _data,
+            };
 
         const { data } = await axios.post(
                 `${baseURL}${endpoint}`,
-                _data,
                 config,
             );
 
