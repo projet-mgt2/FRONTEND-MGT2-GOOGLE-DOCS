@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css';
+import DocEditor from "./DocEditor";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -19,7 +20,8 @@ export default function MyEditor() {
   };
 
   return (
-    <ReactQuill
+    <>
+    {/* <ReactQuill
       theme="snow"
       value={editorContent}
       onChange={handleChange}
@@ -43,7 +45,9 @@ export default function MyEditor() {
       ]}
       placeholder=""
       className="bg-white text-black h-full"
-    />
+    /> */}
+    <DocEditor />
+    </>
   );
 }
 
