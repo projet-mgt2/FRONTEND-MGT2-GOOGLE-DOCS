@@ -16,6 +16,8 @@ export default function DocEditor() {
   }, []);
   
   return (
-    <DocumentEditorContainerComponent id="container" height={'590px'} enableToolbar={true} ></DocumentEditorContainerComponent>
+    <div className='container-fluid'>
+        <DocumentEditorContainerComponent id="container" height={'100vh'} enableToolbar={true} title='Hello World' ></DocumentEditorContainerComponent>
+    </div>
   );
 }
